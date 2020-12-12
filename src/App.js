@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components';
-import { BrowserRouter, Route, Switch, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import { Layout } from './components';
 import { LayoutContainer } from './containers';
@@ -11,10 +11,6 @@ const FakePage = props => {
     return <p>Hello! I'm a fake page!</p>;
 };
 
-const OfficePage = props => {
-    return <p>Hello! I'm an office page!</p>;
-};
-
 export const App = () => (
     <BrowserRouter>
         <ThemeProvider theme={darkTheme}>
@@ -24,8 +20,12 @@ export const App = () => (
                 {({ movies, ...other }) => (
                     <Layout {...other}>
                         <Switch>
-                            <Route path="/fake">
+                            <Route path={['/favorite', '/profile', '/logout']}>
                                 <FakePage />
+                            </Route>
+
+                            <Route path="/movie/:movieId" exact>
+                                <HomePage movies={movies} />
                             </Route>
 
                             <Route path="/" exact>
