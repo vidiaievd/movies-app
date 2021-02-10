@@ -1,12 +1,23 @@
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { rootReducer } from './store';
+import { createStore } from 'redux';
+
+const store = createStore(
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
 render(
     <StrictMode>
-        <App />
+        <Provider store={store}>
+            <App />
+        </Provider>
     </StrictMode>,
     document.getElementById('root')
 );

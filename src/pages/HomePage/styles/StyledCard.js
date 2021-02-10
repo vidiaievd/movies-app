@@ -1,16 +1,16 @@
 import styled from 'styled-components/macro';
-
 import { StyledLink } from '../../../components/Link';
 
-const maxWidth = '50rem';
+const cardMaxWidth = '50rem';
 const borderRadius = '0.5rem';
-const borderWidth = '.2rem';
+// const borderWidth = '0.2rem';
 
 export const StyledCard = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: ${maxWidth};
+    max-width: ${cardMaxWidth};
+    height: 50vw;
     background-image: url(${props => props.$imageUrl});
     background-size: cover;
     background-repeat: no-repeat;
@@ -25,35 +25,22 @@ export const StyledCard = styled.div`
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: transparent;
+        /* background-color: transparent; */
+        background-color: ${props => props.theme.darkColors[800]};
         border-radius: ${borderRadius};
         transition: background-color 300ms ease;
     }
 
     &:hover {
-        &::before {
-            background-color: ${props => props.theme.darkColors[800]};
-        }
-
-        ${StyledLink} {
-            opacity: 1;
+        &:before {
+            background-color: transparent;
         }
     }
 
     ${StyledLink} {
-        border: ${borderWidth} solid ${props => props.theme.lightColors[500]};
-        color: ${props => props.theme.lightColors[500]};
-        padding: ${props => props.theme.padding.sm};
-        text-decoration: none;
-        opacity: 0;
         position: relative;
-        z-index: 1;
-        transition: opacity 300ms ease, color 150ms ease,
-            border-color 150ms ease;
-
-        &:hover {
-            color: ${props => props.theme.secondaryClr};
-            border-color: ${props => props.theme.secondaryClr};
-        }
+        width: 100%;
+        height: 100%;
+        opacity: 0;
     }
 `;
